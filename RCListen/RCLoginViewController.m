@@ -1,0 +1,423 @@
+//
+//  RCLoginViewController.m
+//  RCFang
+//
+//  Created by xuzepei on 3/14/13.
+//  Copyright (c) 2013 xuzepei. All rights reserved.
+//
+
+#import "RCLoginViewController.h"
+#import "RCTool.h"
+#import "RCSignupViewController.h"
+#import "RCHttpRequest.h"
+#import "iToast.h"
+
+#define ACCOUNT_TF_TAG 100
+#define PASSWORD_TF_TAG 101
+#define ATTRIBUTED_LABEL_TAG 102
+
+@interface RCLoginViewController ()
+
+@end
+
+@implementation RCLoginViewController
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        
+        UILabel *titleLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+        titleLabel.backgroundColor = [UIColor clearColor];
+        titleLabel.font = [UIFont systemFontOfSize:20.0];
+        //titleLabel.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+        titleLabel.textAlignment = NSTextAlignmentCenter;
+        titleLabel.textColor = NAVIGATION_BAR_TITLE_COLOR;
+        self.navigationItem.titleView = titleLabel;
+        titleLabel.text = @"登录";
+        [titleLabel sizeToFit];
+        
+        UIBarButtonItem* rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"注册" style:UIBarButtonItemStyleDone target:self action:@selector(clickedRightBarButtonItem:)] autorelease];
+        self.navigationItem.rightBarButtonItem = rightBarButtonItem;
+        
+        _itemArray = [[NSMutableArray alloc] init];
+        
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+    self.tableView = nil;
+    self.itemArray = nil;
+    self.loginButton = nil;
+    self.accountTF = nil;
+    self.passwordTF = nil;
+    self.attributedLabel = nil;
+    
+    [super dealloc];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	// Do any additional setup after loading the view.
+    
+    UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(0,0, 52, 33);
+    [button setImage:[UIImage imageNamed:@"fanhui"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"fanhui_on"] forState:UIControlStateHighlighted];
+    [button addTarget:self action:@selector(clickedLeftBarButtonItem:) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:button] autorelease];
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
+    
+    [self initTableView];
+    
+    [self initButtons];
+    
+    [self initTextFields];
+    
+    [self initAttributedLabel];
+}
+
+- (void)clickedLeftBarButtonItem:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    
+    self.tableView = nil;
+    self.loginButton = nil;
+    self.accountTF = nil;
+    self.passwordTF = nil;
+    self.attributedLabel = nil;
+}
+
+- (void)clickedRightBarButtonItem:(id)sender
+{
+    RCSignupViewController* temp = [[RCSignupViewController alloc] initWithNibName:nil bundle:nil];
+    [self.navigationController pushViewController:temp animated:YES];
+    [temp release];
+}
+
+#pragma mark - UITableView
+
+- (void)initTableView
+{
+    if(nil == _tableView)
+    {
+        UILabel* titleLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, 12, 300, 20)] autorelease];
+        titleLabel.backgroundColor = [UIColor clearColor];
+        titleLabel.text = @"利用车管家会员进行登录";
+        titleLabel.font = [UIFont systemFontOfSize:14];
+        [self.view addSubview: titleLabel];
+        
+        CGFloat tabBarHeight = TAB_BAR_HEIGHT;
+        if(self.hidesBottomBarWhenPushed)
+            tabBarHeight = 0.0;
+        
+        //init table view
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,30,[RCTool getScreenSize].width,[RCTool getScreenSize].height - STATUS_BAR_HEIGHT - NAVIGATION_BAR_HEIGHT - tabBarHeight - 30)
+                                                  style:UITableViewStyleGrouped];
+        _tableView.backgroundColor = [UIColor clearColor];
+        _tableView.delegate = self;
+        _tableView.opaque = NO;
+        _tableView.backgroundView = nil;
+        _tableView.dataSource = self;
+    }
+	
+	[self.view addSubview:_tableView];
+    
+    if(0 == [_itemArray count])
+    {
+    NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
+    [dict setObject:@"账号：" forKey:@"name"];
+    [_itemArray addObject:dict];
+    [dict release];
+    
+    dict = [[NSMutableDictionary alloc] init];
+    [dict setObject:@"密码：" forKey:@"name"];
+    [_itemArray addObject:dict];
+    [dict release];
+    }
+    
+    [_tableView reloadData];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (id)getCellDataAtIndexPath: (NSIndexPath*)indexPath
+{
+	if(indexPath.row >= [_itemArray count])
+		return nil;
+	
+	return [_itemArray objectAtIndex: indexPath.row];
+}
+
+// Customize the number of rows in the table view.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [_itemArray count];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return 44.0;
+}
+
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    static NSString *cellId = @"cellId";
+    static NSString *cellId1 = @"cellId1";
+    
+    UITableViewCell *cell = nil;
+    
+    if(0 == indexPath.row)
+    {
+        cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+        if(cell == nil)
+        {
+            cell = [[[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault
+                                           reuseIdentifier: cellId] autorelease];
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+            [cell addSubview:_accountTF];
+        }
+    }
+    else
+    {
+        cell = [tableView dequeueReusableCellWithIdentifier:cellId1];
+        if(cell == nil)
+        {
+            cell = [[[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault
+                                           reuseIdentifier: cellId1] autorelease];
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            [cell addSubview:_passwordTF];
+        }
+    }
+	
+    
+    NSDictionary* item = (NSDictionary*)[self getCellDataAtIndexPath: indexPath];
+	if(item)
+	{
+        cell.textLabel.text = [item objectForKey:@"name"];
+	}
+    
+    return cell;
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	
+	[tableView deselectRowAtIndexPath: indexPath animated: YES];
+}
+
+#pragma mark Buttons
+
+- (void)initButtons
+{
+    if(nil == _loginButton)
+    {
+        self.loginButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _loginButton.frame = CGRectMake(70, [RCTool getScreenSize].height - STATUS_BAR_HEIGHT - NAVIGATION_BAR_HEIGHT - TAB_BAR_HEIGHT - 220, 180, 33);
+        _loginButton.titleLabel.font = [UIFont systemFontOfSize:16];
+        [_loginButton setTitle:@"登录" forState:UIControlStateNormal];
+        [_loginButton setBackgroundImage:[UIImage imageNamed:@"button_bg"] forState:UIControlStateNormal];
+        [_loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        //[_searchButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+        [_loginButton addTarget:self action:@selector(clickedLoginButton:) forControlEvents:UIControlEventTouchUpInside];
+        [self.tableView addSubview: _loginButton];
+    }
+    
+}
+
+- (void)clickedLoginButton:(id)sender
+{
+    NSLog(@"clickedLoginButton");
+    
+    if(0 == [_accountTF.text length])
+    {
+        [RCTool showAlert:@"提示" message:@"请输入手机号！"];
+        return;
+    }
+    
+    if(0 == [_passwordTF.text length])
+    {
+        [RCTool showAlert:@"提示" message:@"请输入密码！"];
+        return;
+    }
+    
+    
+    NSString* urlString = [NSString stringWithFormat:@"%@/user_login.php?apiid=%@&pwd=%@",BASE_URL,APIID,PWD];
+    
+    NSString* token = [NSString stringWithFormat:@"username=%@&password=%@",_accountTF.text,_passwordTF.text];
+    
+    RCHttpRequest* temp = [[[RCHttpRequest alloc] init] autorelease];
+    BOOL b = [temp post:urlString delegate:self resultSelector:@selector(finishedPostRequest:) token:token];
+    if(b)
+    {
+        [RCTool showIndicator:@"请稍候..."];
+    }
+}
+
+- (void)finishedPostRequest:(NSString*)jsonString
+{
+    [RCTool hideIndicator];
+    
+    if(0 == [jsonString length])
+        return;
+    
+    NSDictionary* result = [RCTool parseToDictionary: jsonString];
+    if(result && [result isKindOfClass:[NSDictionary class]])
+    {
+        NSString* error = [result objectForKey:@"error"];
+        if(0 == [error length])
+        {
+            NSString* username = [result objectForKey:@"username"];
+            if([username length])
+            {
+                [RCTool setUsername:username];
+            }
+            
+            NSString* password = [result objectForKey:@"password"];
+            if([password length])
+            {
+                [RCTool setPassword:password];
+                
+                [[iToast makeText:[NSString stringWithFormat:@"欢迎:%@用户登录",username]] show];
+                
+                [self.navigationController popToRootViewControllerAnimated:YES];
+                
+                //[RCTool showAlert:@"提示" message:@"登录成功！"];
+            }
+            
+            return;
+        }
+        else
+            [RCTool showAlert:@"提示" message:error];
+        
+        return;
+    }
+    
+    [RCTool showAlert:@"提示" message:@"登录失败，请检查网络，稍后尝试！"];
+}
+
+#pragma mark - TextField
+
+- (void)initTextFields
+{
+    if(nil == _accountTF)
+    {
+        _accountTF = [[UITextField alloc] initWithFrame:CGRectMake(80, 11, 200, 30)];
+        _accountTF.delegate = self;
+        _accountTF.tag = ACCOUNT_TF_TAG;
+        _accountTF.placeholder = @"手机号";
+        _accountTF.returnKeyType = UIReturnKeyDone;
+        _accountTF.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+    }
+    
+    if(nil == _passwordTF)
+    {
+        _passwordTF = [[UITextField alloc] initWithFrame:CGRectMake(80, 11, 200, 30)];
+        _passwordTF.delegate = self;
+        _passwordTF.tag = PASSWORD_TF_TAG;
+        _passwordTF.placeholder = @"密码";
+        _passwordTF.secureTextEntry = YES;
+        _passwordTF.returnKeyType = UIReturnKeyDone;
+    }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if(ACCOUNT_TF_TAG == textField.tag)
+    {
+        [_passwordTF becomeFirstResponder];
+        
+        return NO;
+    }
+    else if(PASSWORD_TF_TAG == textField.tag)
+    {
+        [textField resignFirstResponder];
+    }
+    
+    return YES;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
+{
+//    if(ACCOUNT_TF_TAG == textField.tag)
+//    {
+//        NSString* numbers = @"0123456789+-";
+//        NSCharacterSet* cs = [[NSCharacterSet characterSetWithCharactersInString:numbers] invertedSet];
+//        NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
+//        BOOL b = [string isEqualToString:filtered];
+//        if(!b)
+//        {
+//            return NO;
+//        }
+//    }
+    
+    return YES;
+}
+
+
+#pragma mark - OHAttributedLabel
+
+- (void)initAttributedLabel
+{
+    if(nil == _attributedLabel)
+    {
+        _attributedLabel = [[OHAttributedLabel alloc] initWithFrame:CGRectZero];
+        _attributedLabel.tag = ATTRIBUTED_LABEL_TAG;
+        _attributedLabel.frame = CGRectMake([RCTool getScreenSize].width - 70, [RCTool getScreenSize].height - STATUS_BAR_HEIGHT - NAVIGATION_BAR_HEIGHT - TAB_BAR_HEIGHT - 260, 200, 20);
+        _attributedLabel.underlineLinks = YES;
+        _attributedLabel.lineBreakMode =
+        UILineBreakModeWordWrap;
+        _attributedLabel.backgroundColor = [UIColor clearColor];
+        _attributedLabel.delegate = self;
+        NSString* text = @"忘记密码?";
+        NSMutableAttributedString* attrStr = [NSMutableAttributedString attributedStringWithString:text];
+        [_attributedLabel setFont:[UIFont systemFontOfSize:16]];
+        _attributedLabel.attributedText = attrStr;
+        [_attributedLabel addCustomLink:[NSURL URLWithString:text] inRange:NSMakeRange(0, [text length])];
+        _attributedLabel.hidden = YES;
+    }
+    
+    [self.tableView addSubview: _attributedLabel];
+}
+
+- (void)clickLinkText:(NSString*)linkText token:(id)token
+{
+    NSLog(@"clickLinkText:%@",linkText);
+    
+    if(ATTRIBUTED_LABEL_TAG == _attributedLabel.tag)
+    {
+        
+    }
+}
+
+- (UIColor*)colorForLink:(NSTextCheckingResult*)linkInfo underlineStyle:(int32_t*)underlineStyle
+{
+    return [UIColor blueColor];
+}
+
+- (UIFont*)fontForLink:(id)token
+{
+	return [UIFont systemFontOfSize:12];
+}
+
+
+@end
