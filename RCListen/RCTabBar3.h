@@ -1,21 +1,21 @@
 //
-//  RCTabBar.h
-//  RCFang
+//  RCTabBar3.h
+//  RCTemplate
 //
-//  Created by xuzepei on 3/12/13.
+//  Created by xuzepei on 12/3/13.
 //  Copyright (c) 2013 xuzepei. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@protocol RCTabBarDelegate <NSObject>
+@protocol RCTabBar3Delegate <NSObject>
 
 @optional
 - (void)clickedTabBarItem:(int)index token:(id)token;
 
 @end
 
-@interface RCTabBar : UIView
+@interface RCTabBar3 : UIView
 
 @property(nonatomic,retain)NSMutableArray* itemArray;
 @property(assign)id delegate;

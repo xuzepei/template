@@ -16,6 +16,7 @@
 + (NSString *)md5:(NSString *)str;
 + (UIWindow*)frontWindow;
 + (UIViewController*)getTabBarController;
++ (void)hideTabBar:(BOOL)b;
 
 + (BOOL)saveImage:(NSData*)data path:(NSString*)path;
 + (NSString*)getImageLocalPath:(NSString *)path;
@@ -68,6 +69,7 @@
 + (CGRect)getScreenRect;
 + (BOOL)isIphone5;
 + (BOOL)isIpad;
++ (CGFloat)systemVersion;
 
 
 #pragma mark - 搜索条件缓存

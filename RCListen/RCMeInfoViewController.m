@@ -21,14 +21,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         
-        UILabel *titleLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-        titleLabel.backgroundColor = [UIColor clearColor];
-        titleLabel.font = [UIFont systemFontOfSize:20.0];
-        titleLabel.textAlignment = NSTextAlignmentCenter;
-        titleLabel.textColor = NAVIGATION_BAR_TITLE_COLOR;
-        self.navigationItem.titleView = titleLabel;
-        titleLabel.text = @"个人资料";
-        [titleLabel sizeToFit];
+
         
         
         [[NSNotificationCenter defaultCenter] addObserver:self

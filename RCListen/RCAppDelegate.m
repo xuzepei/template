@@ -49,6 +49,10 @@
 	[app registerForRemoteNotificationTypes:
 	 (UIRemoteNotificationType)(UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound)];
     
+    
+    //显示Status Bar for iOS6
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    
 //for baidu push
 //    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
     
@@ -57,41 +61,39 @@
     
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     
-    _vc0 = [[UIViewController alloc] initWithNibName:nil bundle:nil];
-	_vc0.view.backgroundColor = [UIColor redColor];
-    
+    _vc0 = [[RCHomeViewController alloc] initWithNibName:nil bundle:nil];
 	_nc0 = [[UINavigationController alloc]
                                  initWithRootViewController:_vc0];
     _nc0.navigationBar.tintColor = NAVIGATION_BAR_COLOR;
     
     
-    _vc1 = [[UIViewController alloc] initWithNibName:nil bundle:nil];
+    _vc1 = [[RCActivityViewController alloc] initWithNibName:nil bundle:nil];
 	_vc1.view.backgroundColor = [UIColor greenColor];
     
 	_nc1 = [[UINavigationController alloc]
             initWithRootViewController:_vc1];
     _nc1.navigationBar.tintColor = NAVIGATION_BAR_COLOR;
     
-    _vc2 = [[UIViewController alloc] initWithNibName:nil bundle:nil];
+    _vc2 = [[RCShopViewController alloc] initWithNibName:nil bundle:nil];
 	_vc2.view.backgroundColor = [UIColor orangeColor];
     
 	_nc2 = [[UINavigationController alloc]
             initWithRootViewController:_vc2];
-    _nc2.navigationBar.tintColor = NAVIGATION_BAR_COLOR;
+    [_nc2.navigationController setNavigationBarHidden:YES animated:NO];
     
-    _vc3 = [[UIViewController alloc] initWithNibName:nil bundle:nil];
+    _vc3 = [[RCMeViewController alloc] initWithNibName:nil bundle:nil];
 	_vc3.view.backgroundColor = [UIColor blueColor];
     
 	_nc3 = [[UINavigationController alloc]
             initWithRootViewController:_vc3];
-    _nc3.navigationBar.tintColor = NAVIGATION_BAR_COLOR;
+    [_nc3.navigationController setNavigationBarHidden:YES animated:NO];
     
-    _vc4 = [[UIViewController alloc] initWithNibName:nil bundle:nil];
+    _vc4 = [[RCServiceViewController alloc] initWithNibName:nil bundle:nil];
 	_vc4.view.backgroundColor = [UIColor yellowColor];
     
 	_nc4 = [[UINavigationController alloc]
             initWithRootViewController:_vc4];
-    _nc4.navigationBar.tintColor = NAVIGATION_BAR_COLOR;
+    [_nc4.navigationController setNavigationBarHidden:YES animated:NO];
     
     
     _tabBarController = [[RCTabBarController alloc] initWithNibName:nil bundle:nil];

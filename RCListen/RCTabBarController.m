@@ -54,7 +54,12 @@
     [_itemArray addObjectsFromArray:array];
     
     self.tabBar = nil;
-    _tabBar = [[RCTabBar alloc] initWithFrame:CGRectMake(0, [RCTool getScreenSize].height - TAB_BAR_HEIGHT, [RCTool getScreenSize].width, TAB_BAR_HEIGHT)];
+    
+    CGFloat offset_y = [RCTool getScreenSize].height - TAB_BAR_HEIGHT;
+    if([RCTool systemVersion] < 7.0)
+        offset_y -= STATUS_BAR_HEIGHT;
+    
+    _tabBar = [[RCTabBar alloc] initWithFrame:CGRectMake(0, offset_y, [RCTool getScreenSize].width, TAB_BAR_HEIGHT)];
     _tabBar.delegate = self;
     [self.view addSubview:_tabBar];
     [_tabBar updateContent];
@@ -76,6 +81,14 @@
             [temp viewWillAppear:NO];
 
             [self.selectedViewController.view removeFromSuperview];
+            
+            if([RCTool systemVersion] < 7.0)
+            {
+                CGRect rect = temp.view.frame;
+                rect.origin.y = -1 * STATUS_BAR_HEIGHT;
+                temp.view.frame = rect;
+            }
+            
             [self.view addSubview:temp.view];
             [self.view sendSubviewToBack:temp.view];
             

@@ -16,6 +16,7 @@
 #include <ifaddrs.h>
 #include <arpa/inet.h>
 #import <AudioToolbox/AudioToolbox.h>
+#import "RCTabBarController.h"
 
 static int g_reachabilityType = -1;
 
@@ -67,6 +68,12 @@ void systemSoundCompletionProc(SystemSoundID ssID,void *clientData)
     UIApplication *app = [UIApplication sharedApplication];
     RCAppDelegate* appDelegate = (RCAppDelegate*)app.delegate;
     return appDelegate.tabBarController;
+}
+
++ (void)hideTabBar:(BOOL)b
+{
+    RCTabBarController* temp = (RCTabBarController*)[RCTool getTabBarController];
+    temp.tabBar.hidden = b;
 }
 
 
@@ -608,6 +615,13 @@ void systemSoundCompletionProc(SystemSoundID ssID,void *clientData)
 	}
 	
 	return NO;
+}
+
++ (CGFloat)systemVersion
+{
+    CGFloat systemVersion = [[[UIDevice currentDevice] systemVersion] floatValue];
+    
+    return systemVersion;
 }
 
 #pragma mark - 搜索条件缓存
