@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RCPublicViewController.h"
 
-@interface RCDesignerListController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface RCDesignerListController : RCPublicViewController<UITableViewDataSource,UITableViewDelegate>
 
 @property(nonatomic,retain)NSMutableArray* itemArray;
 @property(nonatomic,retain)UITableView* tableView;

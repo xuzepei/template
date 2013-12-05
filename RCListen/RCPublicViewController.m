@@ -29,6 +29,7 @@
 - (void)dealloc
 {
     self.titleView = nil;
+    self.backButton = nil;
     
     [super dealloc];
 }

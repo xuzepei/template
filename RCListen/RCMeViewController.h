@@ -9,6 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "RCPublicViewController.h"
 
-@interface RCMeViewController : RCPublicViewController
+@interface RCMeViewController : RCPublicViewController<UITableViewDataSource,UITableViewDelegate>
+
+@property(nonatomic,retain)UITableView* tableView;
+@property(nonatomic,retain)NSMutableArray* itemArray;
+@property(nonatomic,retain)UILabel* weixinhaoLabel;
+@property(nonatomic,retain)UILabel* jifenLabel;
+
+- (void)updateContent;
 
 @end

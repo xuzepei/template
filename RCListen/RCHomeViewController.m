@@ -10,7 +10,9 @@
 #import "RCDesignerListController.h"
 #import "RCPhoneView.h"
 #import "RCMeViewController.h"
-#import "RCDesignerViewController.h"
+#import "RCAnLiViewController.h"
+#import "RCAboutViewController.h"
+#import "RCSearchViewController.h"
 
 @interface RCHomeViewController ()
 
@@ -93,10 +95,13 @@
 {
     NSLog(@"clickedSearchButton");
     
-    RCDesignerViewController* temp = [[RCDesignerViewController alloc] initWithNibName:nil bundle:nil];
+    RCSearchViewController* searchViewController = [[RCSearchViewController alloc] initWithNibName:nil bundle:nil];
     
-    [self.navigationController pushViewController:temp animated:YES];
-    [temp release];
+    UINavigationController* temp = [[[UINavigationController alloc] initWithRootViewController:searchViewController] autorelease];
+    [searchViewController release];
+    
+    [self presentViewController:temp animated:YES completion:nil];
+
 }
 
 - (void)initScrollView
@@ -146,9 +151,7 @@
 {
     NSLog(@"clickedBanner");
     
-    RCDesignerListController* temp = [[RCDesignerListController alloc] initWithNibName:nil bundle:nil];
-    [self.navigationController pushViewController:temp animated:YES];
-    [temp release];
+
 }
 
 - (void)initPhoneView
@@ -204,15 +207,20 @@
     
     if(ANLI_BUTTON_TAG == button.tag)
     {
-        
+        RCAnLiViewController* temp = [[RCAnLiViewController alloc] initWithNibName:nil bundle:nil];
+        [self.navigationController pushViewController:temp animated:YES];
     }
     else if(TUANDUI_BUTTON_TAG == button.tag)
     {
-        
+        RCDesignerListController* temp = [[RCDesignerListController alloc] initWithNibName:nil bundle:nil];
+        [self.navigationController pushViewController:temp animated:YES];
+        [temp release];
     }
     else if(GUANYU_BUTTON_TAG == button.tag)
     {
-        
+        RCAboutViewController* temp = [[RCAboutViewController alloc] initWithNibName:nil bundle:nil];
+        [self.navigationController pushViewController:temp animated:YES];
+        [temp release];
     }
 }
 

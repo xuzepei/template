@@ -12,5 +12,6 @@
 @interface RCPublicViewController : UIViewController
 
 @property(nonatomic,retain)RCTitleView* titleView;
+@property(nonatomic,retain)UIButton* backButton;
 
 @end

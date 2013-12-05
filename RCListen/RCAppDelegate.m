@@ -66,23 +66,22 @@
                                  initWithRootViewController:_vc0];
     _nc0.navigationBar.tintColor = NAVIGATION_BAR_COLOR;
     
-    
-    _vc1 = [[RCActivityViewController alloc] initWithNibName:nil bundle:nil];
-	_vc1.view.backgroundColor = [UIColor greenColor];
+    _vc1 = [[RCAnLiViewController alloc] initWithNibNameForTabBar:nil bundle:nil];
+	_vc1.view.backgroundColor = [UIColor blueColor];
     
 	_nc1 = [[UINavigationController alloc]
             initWithRootViewController:_vc1];
-    _nc1.navigationBar.tintColor = NAVIGATION_BAR_COLOR;
+    [_nc1.navigationController setNavigationBarHidden:YES animated:NO];
     
-    _vc2 = [[RCShopViewController alloc] initWithNibName:nil bundle:nil];
-	_vc2.view.backgroundColor = [UIColor orangeColor];
+    _vc2 = [[RCActivityViewController alloc] initWithNibName:nil bundle:nil];
+	_vc2.view.backgroundColor = [UIColor greenColor];
     
 	_nc2 = [[UINavigationController alloc]
             initWithRootViewController:_vc2];
-    [_nc2.navigationController setNavigationBarHidden:YES animated:NO];
+    _nc2.navigationBar.tintColor = NAVIGATION_BAR_COLOR;
     
-    _vc3 = [[RCMeViewController alloc] initWithNibName:nil bundle:nil];
-	_vc3.view.backgroundColor = [UIColor blueColor];
+    _vc3 = [[RCShopViewController alloc] initWithNibName:nil bundle:nil];
+	_vc3.view.backgroundColor = [UIColor orangeColor];
     
 	_nc3 = [[UINavigationController alloc]
             initWithRootViewController:_vc3];

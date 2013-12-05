@@ -11,4 +11,7 @@
 
 @interface RCServiceViewController : RCPublicViewController
 
+@property(nonatomic,retain)UIButton* userButton;
+@property(nonatomic,retain)UIButton* searchButton;
+
 @end

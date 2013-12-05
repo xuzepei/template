@@ -11,7 +11,7 @@
 #import "RCHomeViewController.h"
 #import "RCActivityViewController.h"
 #import "RCShopViewController.h"
-#import "RCMeViewController.h"
+#import "RCAnLiViewController.h"
 #import "RCServiceViewController.h"
 
 @interface RCAppDelegate : UIResponder <UIApplicationDelegate,UIAlertViewDelegate>
@@ -26,9 +26,9 @@
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 @property (nonatomic,retain)RCHomeViewController* vc0;
-@property (nonatomic,retain)RCActivityViewController* vc1;
-@property (nonatomic,retain)RCShopViewController* vc2;
-@property (nonatomic,retain)RCMeViewController* vc3;
+@property (nonatomic,retain)RCAnLiViewController* vc1;
+@property (nonatomic,retain)RCActivityViewController* vc2;
+@property (nonatomic,retain)RCShopViewController* vc3;
 @property (nonatomic,retain)RCServiceViewController* vc4;
 
 @property (nonatomic,retain)UINavigationController* nc0;

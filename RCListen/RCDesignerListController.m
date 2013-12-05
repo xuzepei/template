@@ -9,8 +9,9 @@
 #import "RCDesignerListController.h"
 #import "RCPublicCell.h"
 #import "RCDesignerListSectionHeaderView.h"
+#import "RCDesignerViewController.h"
 
-#define SECTION_HEIGHT 30.0f
+#define SECTION_HEIGHT 42.0f
 
 @interface RCDesignerListController ()
 
@@ -23,10 +24,9 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         
+        [self setTitle:@"设计师团队"];
+        
         _itemArray = [[NSMutableArray alloc] init];
-        
-        self.view.backgroundColor = [UIColor blueColor];
-        
     }
     return self;
 }
@@ -41,6 +41,15 @@
 {
     [super viewDidLoad];
     
+    [RCTool hideTabBar:YES];
+    
+    //添加自定义的返回按钮
+    UIButton* backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    backButton.frame = CGRectMake(-6,2, 40, 40);
+    [backButton setImage:[UIImage imageNamed:@"back_button"] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(clickedBackButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.navigationItem.titleView addSubview: backButton];
+    
     [self initTableView];
 }
 
@@ -50,6 +59,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)clickedBackButton:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+    
+    [RCTool hideTabBar:NO];
+}
+
 #pragma mark - Table View
 
 - (void)initTableView
@@ -57,7 +73,7 @@
     if(nil == _tableView)
     {
         //init table view
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0,[RCTool getScreenSize].width,[RCTool getScreenSize].height - TAB_BAR_HEIGHT)
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0,[RCTool getScreenSize].width,[RCTool getScreenSize].height)
                                                   style:UITableViewStyleGrouped];
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.delegate = self;
@@ -80,7 +96,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (CGFloat)getCellHeight:(NSIndexPath*)indexPath
 {
-    return 40.0f;
+    return 90.0f;
 }
 
 - (id)getCellDataAtIndexPath: (NSIndexPath*)indexPath
@@ -158,6 +174,12 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
 	[tableView deselectRowAtIndexPath: indexPath animated: YES];
+    
+    
+    RCDesignerViewController* temp = [[RCDesignerViewController alloc] initWithNibName:nil bundle:nil];
+    
+    [self.navigationController pushViewController:temp animated:YES];
+    [temp release];
 }
 
 

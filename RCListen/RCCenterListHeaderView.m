@@ -1,14 +1,14 @@
 //
-//  RCDesignerListSectionHeaderView.m
+//  RCCenterListHeaderView.m
 //  RCTemplate
 //
-//  Created by xuzepei on 11/25/13.
+//  Created by xuzepei on 12/5/13.
 //  Copyright (c) 2013 xuzepei. All rights reserved.
 //
 
-#import "RCDesignerListSectionHeaderView.h"
+#import "RCCenterListHeaderView.h"
 
-@implementation RCDesignerListSectionHeaderView
+@implementation RCCenterListHeaderView
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -35,7 +35,8 @@
     NSString* text = (NSString*)self.item;
     if([text length])
     {
-        [text drawInRect:CGRectMake(10, 11, self.bounds.size.width - 20, 20) withFont:[UIFont systemFontOfSize:17] lineBreakMode:NSLineBreakByTruncatingTail];
+        [[UIColor orangeColor] set];
+        [text drawInRect:CGRectMake(10, 10, self.bounds.size.width - 20, 20) withFont:[UIFont systemFontOfSize:18] lineBreakMode:NSLineBreakByTruncatingTail];
     }
 }
 
