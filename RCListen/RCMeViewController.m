@@ -109,13 +109,13 @@
 
 - (void)initHeaderView
 {
-    UIImageView* imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT+NAVIGATION_BAR_HEIGHT, [RCTool getScreenSize].width, HEADER_HEIGHT)];
+    UIImageView* imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, [RCTool getScreenSize].width, HEADER_HEIGHT)];
     imageView.image = [UIImage imageNamed:@"center_header"];
     [self.view addSubview:imageView];
     
     if(nil == _weixinhaoLabel)
     {
-        _weixinhaoLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 118, 300, 20)];
+        _weixinhaoLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 54, 300, 20)];
         _weixinhaoLabel.backgroundColor = [UIColor clearColor];
         _weixinhaoLabel.font = [UIFont systemFontOfSize:18];
     }
@@ -125,7 +125,7 @@
     
     if(nil == _jifenLabel)
     {
-        _jifenLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 144, 300, 20)];
+        _jifenLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 80, 300, 20)];
         _jifenLabel.backgroundColor = [UIColor clearColor];
         _jifenLabel.font = [UIFont systemFontOfSize:16];
         _jifenLabel.textColor = [UIColor grayColor];
@@ -142,7 +142,7 @@
     if(nil == _tableView)
     {
         //init table view
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(6,NAVIGATION_BAR_HEIGHT+STATUS_BAR_HEIGHT + HEADER_HEIGHT,[RCTool getScreenSize].width - 12,[RCTool getScreenSize].height - (NAVIGATION_BAR_HEIGHT+STATUS_BAR_HEIGHT + HEADER_HEIGHT))
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(6,HEADER_HEIGHT,[RCTool getScreenSize].width - 12,[RCTool getScreenSize].height - (NAVIGATION_BAR_HEIGHT+STATUS_BAR_HEIGHT + HEADER_HEIGHT))
                                                   style:UITableViewStyleGrouped];
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.delegate = self;

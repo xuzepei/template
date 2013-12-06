@@ -9,6 +9,7 @@
 #import "RCDesignerViewController.h"
 #import "RCDesignerView.h"
 #import "RCTabBar3.h"
+#import "RCPhoneView.h"
 
 #define IMAGE_HEIGHT 168.0f
 
@@ -74,6 +75,8 @@
     [self initTabBar];
     
     [self initScrollTextView];
+    
+    [self initPhoneView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -86,7 +89,7 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
     self.navigationController.navigationBar.hidden = NO;
-    [RCTool hideTabBar:NO];
+    //[RCTool hideTabBar:NO];
 }
 
 - (void)clickedFavoriteButton:(id)sender
@@ -132,6 +135,24 @@
     [item release];
     
     [self.view addSubview:_scrollTextView];
+}
+
+- (void)initPhoneView
+{
+    RCPhoneView* phoneView = [[[RCPhoneView alloc] initWithFrame:CGRectMake(0, [RCTool getScreenSize].height - PHONE_VIEW_HEIGHT, [RCTool getScreenSize].width, PHONE_VIEW_HEIGHT)] autorelease];
+    
+    phoneView.delegate = self;
+    [phoneView updateContent:PHONE_VIEW_TEXT];
+    [self.view addSubview:phoneView];
+}
+
+- (void)clickedPhoneNumber:(id)sender
+{
+    NSString* phoneNum = PHONE_NUMBER;
+    if([phoneNum isKindOfClass:[NSString class]] && [phoneNum length])
+    {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phoneNum]]];
+    }
 }
 
 @end

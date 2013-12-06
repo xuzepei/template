@@ -54,6 +54,11 @@
         if(self.backButton)
             [self.backButton removeFromSuperview];
         
+        if(_tableView)
+        _tableView.frame = CGRectMake(0,40,[RCTool getScreenSize].width,[RCTool getScreenSize].height - (NAVIGATION_BAR_HEIGHT+STATUS_BAR_HEIGHT + 40 + TAB_BAR_HEIGHT));
+        
+        self.forTabBar = YES;
+        
     }
     return self;
 }
@@ -135,7 +140,7 @@
 {
     if(nil == _tabBar)
     {
-        _tabBar = [[RCTabBar4 alloc] initWithFrame:CGRectMake(0,NAVIGATION_BAR_HEIGHT+STATUS_BAR_HEIGHT,[RCTool getScreenSize].width, 40)];
+        _tabBar = [[RCTabBar4 alloc] initWithFrame:CGRectMake(0,0,[RCTool getScreenSize].width, 40)];
         _tabBar.delegate = self;
     }
     
@@ -187,7 +192,7 @@
     if(nil == _tableView)
     {
         //init table view
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,NAVIGATION_BAR_HEIGHT+STATUS_BAR_HEIGHT + 40,[RCTool getScreenSize].width,[RCTool getScreenSize].height - (NAVIGATION_BAR_HEIGHT+STATUS_BAR_HEIGHT + 40))
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,40,[RCTool getScreenSize].width,[RCTool getScreenSize].height - (NAVIGATION_BAR_HEIGHT+STATUS_BAR_HEIGHT + 40))
                                                   style:UITableViewStyleGrouped];
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.delegate = self;
@@ -298,6 +303,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     NSDictionary* item = (NSDictionary*)token;
     
     RCAnLiDetailViewController* temp = [[RCAnLiDetailViewController alloc] initWithNibName:nil bundle:nil];
+    temp.showTabBarWhenQuit = self.forTabBar;
     [self.navigationController pushViewController:temp animated:YES];
     [temp release];
     

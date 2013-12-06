@@ -1,26 +1,26 @@
 //
-//  RCAnLiDetailViewController.m
+//  RCActivityDetailViewController.m
 //  RCTemplate
 //
-//  Created by xuzepei on 12/5/13.
+//  Created by xuzepei on 12/6/13.
 //  Copyright (c) 2013 xuzepei. All rights reserved.
 //
 
-#import "RCAnLiDetailViewController.h"
+#import "RCActivityDetailViewController.h"
 #import "RCPhoneView.h"
 
-@interface RCAnLiDetailViewController ()
+@interface RCActivityDetailViewController ()
 
 @end
 
-@implementation RCAnLiDetailViewController
+@implementation RCActivityDetailViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         
-        [self setTitle:@"案例详情"];
+        [self setTitle:@"促销活动"];
     }
     return self;
 }
@@ -70,13 +70,7 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
     
-    if(self.showTabBarWhenQuit)
-        [RCTool hideTabBar:NO];
-}
-
-- (void)updateContent:(NSDictionary*)item
-{
-    self.item = item;
+    [RCTool hideTabBar:NO];
 }
 
 - (void)initDetailView
@@ -92,14 +86,15 @@
     
     if(nil == _detailView)
     {
-        _detailView = [[RCAnLiDetailView alloc] initWithFrame:CGRectMake(0, 0, [RCTool getScreenSize].width,568)];
+        _detailView = [[RCActivityDetailView alloc] initWithFrame:CGRectMake(0, 0, [RCTool getScreenSize].width,568)];
     }
     
     [_detailView updateContent:self.item];
     
-    [_scrollView setContentSize:CGSizeMake([RCTool getScreenSize].width,600)];
+    [_scrollView setContentSize:CGSizeMake([RCTool getScreenSize].width,568)];
     [_scrollView addSubview:_detailView];
 }
+
 
 - (void)initPhoneView
 {

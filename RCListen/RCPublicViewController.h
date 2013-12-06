@@ -13,5 +13,6 @@
 
 @property(nonatomic,retain)RCTitleView* titleView;
 @property(nonatomic,retain)UIButton* backButton;
+@property(assign)BOOL forTabBar;
 
 @end

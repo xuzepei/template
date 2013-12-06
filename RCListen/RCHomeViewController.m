@@ -156,7 +156,7 @@
 
 - (void)initPhoneView
 {
-    RCPhoneView* phoneView = [[[RCPhoneView alloc] initWithFrame:CGRectMake(0, [RCTool getScreenSize].height - TAB_BAR_HEIGHT - PHONE_VIEW_HEIGHT, [RCTool getScreenSize].width, PHONE_VIEW_HEIGHT)] autorelease];
+    RCPhoneView* phoneView = [[[RCPhoneView alloc] initWithFrame:CGRectMake(0, [RCTool getScreenSize].height - TAB_BAR_HEIGHT - PHONE_VIEW_HEIGHT - NAVIGATION_BAR_HEIGHT - STATUS_BAR_HEIGHT, [RCTool getScreenSize].width, PHONE_VIEW_HEIGHT)] autorelease];
     
     phoneView.delegate = self;
     [phoneView updateContent:PHONE_VIEW_TEXT];

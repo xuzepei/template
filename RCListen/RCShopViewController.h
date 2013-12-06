@@ -9,9 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "RCPublicViewController.h"
 
-@interface RCShopViewController : RCPublicViewController
+@interface RCShopViewController : RCPublicViewController<UITableViewDataSource,UITableViewDelegate>
 
+@property(nonatomic,retain)UITableView* tableView;
+@property(nonatomic,retain)NSMutableArray* itemArray;
 @property(nonatomic,retain)UIButton* userButton;
 @property(nonatomic,retain)UIButton* searchButton;
+
+- (void)updateContent;
 
 @end

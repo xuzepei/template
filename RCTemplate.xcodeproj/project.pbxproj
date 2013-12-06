@@ -196,6 +196,24 @@
 		09CF7F2F16A3EAB90050A603 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09CF7F2E16A3EAB90050A603 /* QuartzCore.framework */; };
 		09CF7F3716A3ECFF0050A603 /* TBXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CF7F3616A3ECFF0050A603 /* TBXML.m */; };
 		09DB7E7F17539265004BAA2E /* RCShareTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09DB7E7E17539265004BAA2E /* RCShareTextViewController.m */; };
+		09E342861851644900C131D8 /* RCActivityCellContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09E342851851644900C131D8 /* RCActivityCellContentView.m */; };
+		09E3428A1851645E00C131D8 /* RCActivityDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09E342881851645E00C131D8 /* RCActivityDetailViewController.m */; };
+		09E3428B1851645E00C131D8 /* RCActivityDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09E342891851645E00C131D8 /* RCActivityDetailViewController.xib */; };
+		09E3428D1851679100C131D8 /* detail_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 09E3428C1851679100C131D8 /* detail_button@2x.png */; };
+		09E3429018516A4800C131D8 /* RCActivityDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09E3428F18516A4800C131D8 /* RCActivityDetailView.m */; };
+		09E3429318516EE000C131D8 /* RCShopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09E3429218516EE000C131D8 /* RCShopView.m */; };
+		09E342971851700B00C131D8 /* RCGoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09E342951851700B00C131D8 /* RCGoodsViewController.m */; };
+		09E342981851700B00C131D8 /* RCGoodsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09E342961851700B00C131D8 /* RCGoodsViewController.xib */; };
+		09E3429C1851754600C131D8 /* pay_button_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 09E342991851754600C131D8 /* pay_button_selected@2x.png */; };
+		09E3429D1851754600C131D8 /* pay_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 09E3429A1851754600C131D8 /* pay_button@2x.png */; };
+		09E3429E1851754600C131D8 /* shop_header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 09E3429B1851754600C131D8 /* shop_header@2x.png */; };
+		09E342A1185176EA00C131D8 /* RCGoodsCellContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09E342A0185176EA00C131D8 /* RCGoodsCellContentView.m */; };
+		09E342A41851997C00C131D8 /* RCGoodsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09E342A31851997C00C131D8 /* RCGoodsView.m */; };
+		09E342A618519A7B00C131D8 /* close_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 09E342A518519A7B00C131D8 /* close_button@2x.png */; };
+		09E342AB1851A59900C131D8 /* no1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 09E342A71851A59900C131D8 /* no1@2x.png */; };
+		09E342AC1851A59900C131D8 /* no2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 09E342A81851A59900C131D8 /* no2@2x.png */; };
+		09E342AD1851A59900C131D8 /* no3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 09E342A91851A59900C131D8 /* no3@2x.png */; };
+		09E342AE1851A59900C131D8 /* no4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 09E342AA1851A59900C131D8 /* no4@2x.png */; };
 		09EDD57317F515BB00D41397 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 09EDD57217F515BB00D41397 /* Icon.png */; };
 		09EDD57517F515BE00D41397 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 09EDD57417F515BE00D41397 /* Icon@2x.png */; };
 		09F2F6461842F1D6006D591F /* libBPush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F2F6451842F1D6006D591F /* libBPush.a */; };
@@ -544,6 +562,31 @@
 		09CF7F3616A3ECFF0050A603 /* TBXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBXML.m; sourceTree = "<group>"; };
 		09DB7E7D17539265004BAA2E /* RCShareTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCShareTextViewController.h; sourceTree = "<group>"; };
 		09DB7E7E17539265004BAA2E /* RCShareTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCShareTextViewController.m; sourceTree = "<group>"; };
+		09E342841851644900C131D8 /* RCActivityCellContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCActivityCellContentView.h; sourceTree = "<group>"; };
+		09E342851851644900C131D8 /* RCActivityCellContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCActivityCellContentView.m; sourceTree = "<group>"; };
+		09E342871851645E00C131D8 /* RCActivityDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCActivityDetailViewController.h; sourceTree = "<group>"; };
+		09E342881851645E00C131D8 /* RCActivityDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCActivityDetailViewController.m; sourceTree = "<group>"; };
+		09E342891851645E00C131D8 /* RCActivityDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RCActivityDetailViewController.xib; sourceTree = "<group>"; };
+		09E3428C1851679100C131D8 /* detail_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "detail_button@2x.png"; sourceTree = "<group>"; };
+		09E3428E18516A4800C131D8 /* RCActivityDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCActivityDetailView.h; sourceTree = "<group>"; };
+		09E3428F18516A4800C131D8 /* RCActivityDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCActivityDetailView.m; sourceTree = "<group>"; };
+		09E3429118516EE000C131D8 /* RCShopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCShopView.h; sourceTree = "<group>"; };
+		09E3429218516EE000C131D8 /* RCShopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCShopView.m; sourceTree = "<group>"; };
+		09E342941851700B00C131D8 /* RCGoodsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCGoodsViewController.h; sourceTree = "<group>"; };
+		09E342951851700B00C131D8 /* RCGoodsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCGoodsViewController.m; sourceTree = "<group>"; };
+		09E342961851700B00C131D8 /* RCGoodsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RCGoodsViewController.xib; sourceTree = "<group>"; };
+		09E342991851754600C131D8 /* pay_button_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pay_button_selected@2x.png"; sourceTree = "<group>"; };
+		09E3429A1851754600C131D8 /* pay_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pay_button@2x.png"; sourceTree = "<group>"; };
+		09E3429B1851754600C131D8 /* shop_header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shop_header@2x.png"; sourceTree = "<group>"; };
+		09E3429F185176EA00C131D8 /* RCGoodsCellContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCGoodsCellContentView.h; sourceTree = "<group>"; };
+		09E342A0185176EA00C131D8 /* RCGoodsCellContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCGoodsCellContentView.m; sourceTree = "<group>"; };
+		09E342A21851997C00C131D8 /* RCGoodsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCGoodsView.h; sourceTree = "<group>"; };
+		09E342A31851997C00C131D8 /* RCGoodsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCGoodsView.m; sourceTree = "<group>"; };
+		09E342A518519A7B00C131D8 /* close_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close_button@2x.png"; sourceTree = "<group>"; };
+		09E342A71851A59900C131D8 /* no1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no1@2x.png"; sourceTree = "<group>"; };
+		09E342A81851A59900C131D8 /* no2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no2@2x.png"; sourceTree = "<group>"; };
+		09E342A91851A59900C131D8 /* no3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no3@2x.png"; sourceTree = "<group>"; };
+		09E342AA1851A59900C131D8 /* no4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no4@2x.png"; sourceTree = "<group>"; };
 		09EDD57217F515BB00D41397 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		09EDD57417F515BE00D41397 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		09F2F6451842F1D6006D591F /* libBPush.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBPush.a; sourceTree = "<group>"; };
@@ -1093,6 +1136,13 @@
 				0951D207184328F4001BFF4A /* RCActivityViewController.h */,
 				0951D208184328F4001BFF4A /* RCActivityViewController.m */,
 				0951D209184328F4001BFF4A /* RCActivityViewController.xib */,
+				09E342841851644900C131D8 /* RCActivityCellContentView.h */,
+				09E342851851644900C131D8 /* RCActivityCellContentView.m */,
+				09E342871851645E00C131D8 /* RCActivityDetailViewController.h */,
+				09E342881851645E00C131D8 /* RCActivityDetailViewController.m */,
+				09E342891851645E00C131D8 /* RCActivityDetailViewController.xib */,
+				09E3428E18516A4800C131D8 /* RCActivityDetailView.h */,
+				09E3428F18516A4800C131D8 /* RCActivityDetailView.m */,
 			);
 			name = Activity;
 			sourceTree = "<group>";
@@ -1103,6 +1153,15 @@
 				0951D20D18432AD9001BFF4A /* RCShopViewController.h */,
 				0951D20E18432AD9001BFF4A /* RCShopViewController.m */,
 				0951D20F18432AD9001BFF4A /* RCShopViewController.xib */,
+				09E3429118516EE000C131D8 /* RCShopView.h */,
+				09E3429218516EE000C131D8 /* RCShopView.m */,
+				09E3429F185176EA00C131D8 /* RCGoodsCellContentView.h */,
+				09E342A0185176EA00C131D8 /* RCGoodsCellContentView.m */,
+				09E342941851700B00C131D8 /* RCGoodsViewController.h */,
+				09E342951851700B00C131D8 /* RCGoodsViewController.m */,
+				09E342961851700B00C131D8 /* RCGoodsViewController.xib */,
+				09E342A21851997C00C131D8 /* RCGoodsView.h */,
+				09E342A31851997C00C131D8 /* RCGoodsView.m */,
 			);
 			name = Shop;
 			sourceTree = "<group>";
@@ -1132,6 +1191,15 @@
 		095C59C816AF804200F7B949 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				09E342A71851A59900C131D8 /* no1@2x.png */,
+				09E342A81851A59900C131D8 /* no2@2x.png */,
+				09E342A91851A59900C131D8 /* no3@2x.png */,
+				09E342AA1851A59900C131D8 /* no4@2x.png */,
+				09E342A518519A7B00C131D8 /* close_button@2x.png */,
+				09E342991851754600C131D8 /* pay_button_selected@2x.png */,
+				09E3429A1851754600C131D8 /* pay_button@2x.png */,
+				09E3429B1851754600C131D8 /* shop_header@2x.png */,
+				09E3428C1851679100C131D8 /* detail_button@2x.png */,
 				090F0EEC18507AC200F981F3 /* search_bar@2x.png */,
 				090F0EEA1850715300F981F3 /* cancel_button@2x.png */,
 				090F0EE218506CCC00F981F3 /* logout_button@2x.png */,
@@ -1444,20 +1512,27 @@
 			files = (
 				09F2F66018431949006D591F /* title_bar_bg@2x.png in Resources */,
 				090C9C23184C1E1800EC6F36 /* back_button@2x.png in Resources */,
+				09E342981851700B00C131D8 /* RCGoodsViewController.xib in Resources */,
 				0941EED116EB95B800327D1A /* RCTemplate-Info.plist in Resources */,
 				0920237B172E2D56009EAB94 /* README-GHUnit in Resources */,
 				09F2F64E1842F529006D591F /* tabbar_item_0@2x.png in Resources */,
 				09CAD1D4183C544B0031A26A /* Images.xcassets in Resources */,
+				09E3428D1851679100C131D8 /* detail_button@2x.png in Resources */,
 				09245636184DB2CE001D9AC7 /* guanyu_button@2x.png in Resources */,
 				0951D21718432B46001BFF4A /* RCMeViewController.xib in Resources */,
 				090F0ECC1850260500F981F3 /* unlike_button@2x.png in Resources */,
 				0951D22718433A17001BFF4A /* banner_0.png in Resources */,
+				09E342AC1851A59900C131D8 /* no2@2x.png in Resources */,
 				09245627184DA38B001D9AC7 /* tabbar_item_0_1@2x.png in Resources */,
 				09CAD1F5183C99B70031A26A /* BPushConfig.plist in Resources */,
+				09E342AB1851A59900C131D8 /* no1@2x.png in Resources */,
 				09F2F64D1842F529006D591F /* tabbar_bg@2x.png in Resources */,
+				09E3429D1851754600C131D8 /* pay_button@2x.png in Resources */,
 				090F0EC21850110400F981F3 /* RCAnLiViewController.xib in Resources */,
 				0951D21118432AD9001BFF4A /* RCShopViewController.xib in Resources */,
+				09E342AE1851A59900C131D8 /* no4@2x.png in Resources */,
 				09F2F65B1842FC69006D591F /* RCHomeViewController.xib in Resources */,
+				09E3429E1851754600C131D8 /* shop_header@2x.png in Resources */,
 				0988951C17F43DF100F5AB13 /* Default.png in Resources */,
 				0951D22918433A17001BFF4A /* banner_2.png in Resources */,
 				090F0EEB1850715300F981F3 /* cancel_button@2x.png in Resources */,
@@ -1471,10 +1546,12 @@
 				090F0EE318506CCC00F981F3 /* logout_button@2x.png in Resources */,
 				0951D22818433A17001BFF4A /* banner_1.png in Resources */,
 				0924564B184DD805001D9AC7 /* favorite_button@2x.png in Resources */,
+				09E342A618519A7B00C131D8 /* close_button@2x.png in Resources */,
 				0924564A184DD805001D9AC7 /* designer_header_frame@2x.png in Resources */,
 				09F2F6511842F529006D591F /* tabbar_item_1@2x.png in Resources */,
 				09F2F6501842F529006D591F /* tabbar_item_3@2x.png in Resources */,
 				0951D20B184328F4001BFF4A /* RCActivityViewController.xib in Resources */,
+				09E3428B1851645E00C131D8 /* RCActivityDetailViewController.xib in Resources */,
 				0988952017F43E0600F5AB13 /* Default-568h@2x.png in Resources */,
 				09EDD57317F515BB00D41397 /* Icon.png in Resources */,
 				09245637184DB2CE001D9AC7 /* tuandui_button@2x.png in Resources */,
@@ -1486,7 +1563,9 @@
 				09245635184DB2CE001D9AC7 /* anli_button@2x.png in Resources */,
 				09F2F64F1842F529006D591F /* tabbar_item_2@2x.png in Resources */,
 				090F0EDE1850650C00F981F3 /* center_header@2x.png in Resources */,
+				09E342AD1851A59900C131D8 /* no3@2x.png in Resources */,
 				09245629184DA38B001D9AC7 /* tabbar_item_3_1@2x.png in Resources */,
+				09E3429C1851754600C131D8 /* pay_button_selected@2x.png in Resources */,
 				09EDD57517F515BE00D41397 /* Icon@2x.png in Resources */,
 				0924563B184DC57E001D9AC7 /* user_button@2x.png in Resources */,
 				09F2F6521842F529006D591F /* tabbar_item_4@2x.png in Resources */,
@@ -1518,6 +1597,7 @@
 				090F0EC51850135300F981F3 /* RCTabBar4.m in Sources */,
 				0950B92B16F160B70039D561 /* RCLoginViewController.m in Sources */,
 				0950B93016F160ED0039D561 /* RCSignupViewController.m in Sources */,
+				09E342861851644900C131D8 /* RCActivityCellContentView.m in Sources */,
 				09CAD1ED183C990E0031A26A /* Base64.m in Sources */,
 				0950B93416F1711C0039D561 /* OHAttributedLabel.m in Sources */,
 				09245644184DD201001D9AC7 /* RCTabBar3.m in Sources */,
@@ -1550,17 +1630,20 @@
 				09202311172E1855009EAB94 /* Renren.m in Sources */,
 				09202312172E1855009EAB94 /* ROBaseDialogViewController.m in Sources */,
 				09202313172E1855009EAB94 /* ROCheckDialogViewController.m in Sources */,
+				09E3428A1851645E00C131D8 /* RCActivityDetailViewController.m in Sources */,
 				0951D21618432B46001BFF4A /* RCMeViewController.m in Sources */,
 				09202314172E1855009EAB94 /* ROWebDialogViewController.m in Sources */,
 				090F0ED918505A9900F981F3 /* RCAboutViewController.m in Sources */,
 				0951D22F18434352001BFF4A /* RCPublicCell.m in Sources */,
 				09202315172E1855009EAB94 /* ROError.m in Sources */,
 				09202316172E1855009EAB94 /* ROBaseNavigationViewController.m in Sources */,
+				09E3429318516EE000C131D8 /* RCShopView.m in Sources */,
 				09202317172E1855009EAB94 /* ROCheckNavigationViewController.m in Sources */,
 				09202318172E1855009EAB94 /* ROWebNavigationViewController.m in Sources */,
 				09CAD1F0183C990E0031A26A /* OpenUDID.m in Sources */,
 				0951D22C1843420D001BFF4A /* RCDesignerListController.m in Sources */,
 				09202319172E1855009EAB94 /* ROAlbumsInfoRequestParam.m in Sources */,
+				09E3429018516A4800C131D8 /* RCActivityDetailView.m in Sources */,
 				0920231A172E1855009EAB94 /* ROGetFriendsInfoRequestParam.m in Sources */,
 				0920231B172E1855009EAB94 /* ROGetFriendsRequestParam.m in Sources */,
 				0920231C172E1855009EAB94 /* ROPasswordFlowRequestParam.m in Sources */,
@@ -1593,6 +1676,7 @@
 				0920236D172E2D56009EAB94 /* ASIDataDecompressor.m in Sources */,
 				0920236E172E2D56009EAB94 /* ASIDownloadCache.m in Sources */,
 				0920236F172E2D56009EAB94 /* ASIFormDataRequest.m in Sources */,
+				09E342A1185176EA00C131D8 /* RCGoodsCellContentView.m in Sources */,
 				09202370172E2D56009EAB94 /* ASIHTTPRequest.m in Sources */,
 				090F0EE818506F8200F981F3 /* RCSearchViewController.m in Sources */,
 				0951D223184332A0001BFF4A /* RCBannerView.m in Sources */,
@@ -1604,6 +1688,7 @@
 				09202373172E2D56009EAB94 /* ASIWebPageRequest.m in Sources */,
 				09202374172E2D56009EAB94 /* ASICloudFilesCDNRequest.m in Sources */,
 				09245651184EBD3F001D9AC7 /* RCTextDrawView.m in Sources */,
+				09E342971851700B00C131D8 /* RCGoodsViewController.m in Sources */,
 				09202375172E2D56009EAB94 /* ASICloudFilesContainer.m in Sources */,
 				090F0EC11850110400F981F3 /* RCAnLiViewController.m in Sources */,
 				09202376172E2D56009EAB94 /* ASICloudFilesContainerRequest.m in Sources */,
@@ -1630,6 +1715,7 @@
 				0999746717C3013500CC1C0C /* RCHttpRequestManager.m in Sources */,
 				09B8023C17C9E99F0089E198 /* RCCheckButton.m in Sources */,
 				098DA0D217CE47E5009B0728 /* RCTabBar2.m in Sources */,
+				09E342A41851997C00C131D8 /* RCGoodsView.m in Sources */,
 				09B794F717D57D450043313D /* RCCheckButton2.m in Sources */,
 				090D367518111715006EC3D5 /* RCLinkButton.m in Sources */,
 				0979E3E61814F7B300DDB418 /* RCMeInfoViewController.m in Sources */,
@@ -1728,8 +1814,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RCListen/RCTemplate-Prefix.pch";
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";

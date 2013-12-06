@@ -15,5 +15,6 @@
 @property(nonatomic,retain)UIScrollView* scrollView;
 @property(nonatomic,retain)RCAnLiDetailView* detailView;
 @property(nonatomic,retain)NSDictionary* item;
+@property(nonatomic,assign)BOOL showTabBarWhenQuit;
 
 @end

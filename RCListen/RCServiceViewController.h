@@ -9,9 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "RCPublicViewController.h"
 
-@interface RCServiceViewController : RCPublicViewController
+@interface RCServiceViewController : RCPublicViewController<UIScrollViewDelegate>
 
 @property(nonatomic,retain)UIButton* userButton;
 @property(nonatomic,retain)UIButton* searchButton;
+@property(nonatomic,retain)UIScrollView* scrollView;
+@property(nonatomic,retain)NSMutableArray* itemArray;
+@property(nonatomic,retain)UIPageControl* pageControl;
+@property(assign)int currentIndex;
 
 @end
