@@ -27,20 +27,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         
-        UILabel *titleLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-        titleLabel.backgroundColor = [UIColor clearColor];
-        titleLabel.font = [UIFont systemFontOfSize:20.0];
-        //titleLabel.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-        titleLabel.textAlignment = NSTextAlignmentCenter;
-        titleLabel.textColor = NAVIGATION_BAR_TITLE_COLOR;
-        self.navigationItem.titleView = titleLabel;
-        titleLabel.text = @"登录";
-        [titleLabel sizeToFit];
-        
-        UIBarButtonItem* rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"注册" style:UIBarButtonItemStyleDone target:self action:@selector(clickedRightBarButtonItem:)] autorelease];
-        self.navigationItem.rightBarButtonItem = rightBarButtonItem;
-        
-        _itemArray = [[NSMutableArray alloc] init];
+        [self setTitle:@"登录"];
         
     }
     return self;
@@ -63,15 +50,14 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(0,0, 52, 33);
-    [button setImage:[UIImage imageNamed:@"fanhui"] forState:UIControlStateNormal];
-    [button setImage:[UIImage imageNamed:@"fanhui_on"] forState:UIControlStateHighlighted];
-    [button addTarget:self action:@selector(clickedLeftBarButtonItem:) forControlEvents:UIControlEventTouchUpInside];
+    [RCTool hideTabBar:YES];
     
-    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:button] autorelease];
-    
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
+    //添加自定义的返回按钮
+    UIButton* backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    backButton.frame = CGRectMake(-6,2, 40, 40);
+    [backButton setImage:[UIImage imageNamed:@"back_button"] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(clickedBackButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.navigationItem.titleView addSubview: backButton];
     
     [self initTableView];
     
@@ -82,9 +68,11 @@
     [self initAttributedLabel];
 }
 
-- (void)clickedLeftBarButtonItem:(id)sender
+- (void)clickedBackButton:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
+    
+    [RCTool hideTabBar:NO];
 }
 
 - (void)didReceiveMemoryWarning
@@ -111,18 +99,13 @@
 {
     if(nil == _tableView)
     {
-        UILabel* titleLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, 12, 300, 20)] autorelease];
-        titleLabel.backgroundColor = [UIColor clearColor];
-        titleLabel.text = @"利用车管家会员进行登录";
-        titleLabel.font = [UIFont systemFontOfSize:14];
-        [self.view addSubview: titleLabel];
+        if(nil == _itemArray)
+            _itemArray = [[NSMutableArray alloc] init];
         
-        CGFloat tabBarHeight = TAB_BAR_HEIGHT;
-        if(self.hidesBottomBarWhenPushed)
-            tabBarHeight = 0.0;
-        
+
+
         //init table view
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,30,[RCTool getScreenSize].width,[RCTool getScreenSize].height - STATUS_BAR_HEIGHT - NAVIGATION_BAR_HEIGHT - tabBarHeight - 30)
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0,[RCTool getScreenSize].width,[RCTool getScreenSize].height - STATUS_BAR_HEIGHT - NAVIGATION_BAR_HEIGHT)
                                                   style:UITableViewStyleGrouped];
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.delegate = self;
@@ -135,18 +118,43 @@
     
     if(0 == [_itemArray count])
     {
-    NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
-    [dict setObject:@"账号：" forKey:@"name"];
-    [_itemArray addObject:dict];
-    [dict release];
-    
-    dict = [[NSMutableDictionary alloc] init];
-    [dict setObject:@"密码：" forKey:@"name"];
-    [_itemArray addObject:dict];
-    [dict release];
+        NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
+        [dict setObject:@"账号：" forKey:@"name"];
+        [_itemArray addObject:dict];
+        [dict release];
+        
+        dict = [[NSMutableDictionary alloc] init];
+        [dict setObject:@"密码：" forKey:@"name"];
+        [_itemArray addObject:dict];
+        [dict release];
     }
     
     [_tableView reloadData];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 80.0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if(0 == section)
+    {
+        UIView* temp = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 80)] autorelease];
+        temp.backgroundColor = [UIColor clearColor];
+        UILabel* titleLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, 20, 300, 40)] autorelease];
+        titleLabel.backgroundColor = [UIColor clearColor];
+        titleLabel.numberOfLines = 2;
+        titleLabel.text = @"登录时请用微信账号来登陆，登录后微信端的积分将同步到APP的积分系统中。";
+        titleLabel.textColor = [UIColor orangeColor];
+        titleLabel.font = [UIFont systemFontOfSize:14];
+        [temp addSubview: titleLabel];
+        
+        return temp;
+    }
+    
+    return nil;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -232,10 +240,10 @@
     if(nil == _loginButton)
     {
         self.loginButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _loginButton.frame = CGRectMake(70, [RCTool getScreenSize].height - STATUS_BAR_HEIGHT - NAVIGATION_BAR_HEIGHT - TAB_BAR_HEIGHT - 220, 180, 33);
-        _loginButton.titleLabel.font = [UIFont systemFontOfSize:16];
-        [_loginButton setTitle:@"登录" forState:UIControlStateNormal];
-        [_loginButton setBackgroundImage:[UIImage imageNamed:@"button_bg"] forState:UIControlStateNormal];
+        _loginButton.frame = CGRectMake(15, 200, 290, 48);
+//        _loginButton.titleLabel.font = [UIFont systemFontOfSize:16];
+//        [_loginButton setTitle:@"登录" forState:UIControlStateNormal];
+        [_loginButton setBackgroundImage:[UIImage imageNamed:@"login_button"] forState:UIControlStateNormal];
         [_loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         //[_searchButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
         [_loginButton addTarget:self action:@selector(clickedLoginButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -250,7 +258,7 @@
     
     if(0 == [_accountTF.text length])
     {
-        [RCTool showAlert:@"提示" message:@"请输入手机号！"];
+        [RCTool showAlert:@"提示" message:@"请输入微信账号！"];
         return;
     }
     
@@ -321,17 +329,17 @@
 {
     if(nil == _accountTF)
     {
-        _accountTF = [[UITextField alloc] initWithFrame:CGRectMake(80, 11, 200, 30)];
+        _accountTF = [[UITextField alloc] initWithFrame:CGRectMake(80, 8, 200, 30)];
         _accountTF.delegate = self;
         _accountTF.tag = ACCOUNT_TF_TAG;
-        _accountTF.placeholder = @"手机号";
+        _accountTF.placeholder = @"微信账号";
         _accountTF.returnKeyType = UIReturnKeyDone;
         _accountTF.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
     }
     
     if(nil == _passwordTF)
     {
-        _passwordTF = [[UITextField alloc] initWithFrame:CGRectMake(80, 11, 200, 30)];
+        _passwordTF = [[UITextField alloc] initWithFrame:CGRectMake(80, 8, 200, 30)];
         _passwordTF.delegate = self;
         _passwordTF.tag = PASSWORD_TF_TAG;
         _passwordTF.placeholder = @"密码";

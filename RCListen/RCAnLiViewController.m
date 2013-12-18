@@ -11,6 +11,7 @@
 #import "RCAnLiDetailViewController.h"
 #import "RCSearchViewController.h"
 #import "RCMeViewController.h"
+#import "RCLoginViewController.h"
 
 @interface RCAnLiViewController ()
 
@@ -77,6 +78,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    if(_tableView)
+        [_tableView reloadData];
 }
 
 - (void)viewDidLoad
@@ -118,9 +122,18 @@
 {
     NSLog(@"clickedUserButton");
     
-    RCMeViewController* temp = [[RCMeViewController alloc] initWithNibName:nil bundle:nil];
-    [self.navigationController pushViewController:temp animated:YES];
-    [temp release];
+    if([RCTool isLogin])
+    {
+        RCMeViewController* temp = [[RCMeViewController alloc] initWithNibName:nil bundle:nil];
+        [self.navigationController pushViewController:temp animated:YES];
+        [temp release];
+    }
+    else
+    {
+        RCLoginViewController* temp = [[RCLoginViewController alloc] initWithNibName:nil bundle:nil];
+        [self.navigationController pushViewController:temp animated:YES];
+        [temp release];
+    }
 }
 
 - (void)clickedSearchButton:(id)sender
@@ -160,23 +173,31 @@
         _itemArray = [[NSMutableArray alloc] init];
     
     NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
+    [dict setObject:@"0" forKey:@"id"];
+    [dict setObject:@"0" forKey:@"f_type"];
     [dict setObject:@"现代简欧风 真皮淡雅舒适感觉" forKey:@"desc"];
     [_itemArray addObject:dict];
     [dict release];
     
     dict = [[NSMutableDictionary alloc] init];
-    [dict setObject:@"现代简欧风 真皮淡雅舒适感觉" forKey:@"desc"];
-    [_itemArray addObject:dict];
-    [dict release];
-    
-    
-    dict = [[NSMutableDictionary alloc] init];
+    [dict setObject:@"1" forKey:@"id"];
+    [dict setObject:@"0" forKey:@"f_type"];
     [dict setObject:@"现代简欧风 真皮淡雅舒适感觉" forKey:@"desc"];
     [_itemArray addObject:dict];
     [dict release];
     
     
     dict = [[NSMutableDictionary alloc] init];
+    [dict setObject:@"2" forKey:@"id"];
+    [dict setObject:@"0" forKey:@"f_type"];
+    [dict setObject:@"现代简欧风 真皮淡雅舒适感觉" forKey:@"desc"];
+    [_itemArray addObject:dict];
+    [dict release];
+    
+    
+    dict = [[NSMutableDictionary alloc] init];
+    [dict setObject:@"3" forKey:@"id"];
+    [dict setObject:@"0" forKey:@"f_type"];
     [dict setObject:@"现代简欧风 真皮淡雅舒适感觉" forKey:@"desc"];
     [_itemArray addObject:dict];
     [dict release];
@@ -223,7 +244,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 	if(indexPath.row >= [_itemArray count])
 		return nil;
 	
-	return [_itemArray objectAtIndex: indexPath.row];
+	return [_itemArray objectAtIndex: indexPath.section];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -253,21 +274,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     
     return 0;
 }
-
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-//{
-//    RCDesignerListSectionHeaderView* temp = [[RCDesignerListSectionHeaderView alloc] initWithFrame:CGRectMake(0, 0, [RCTool getScreenSize].width, 30)];
-//    if(0 == section)
-//        [temp updateContent:@"首席设计师(2)"];
-//    else if(1 == section)
-//        [temp updateContent:@"主任设计师(2)"];
-//    else if(2 == section)
-//        [temp updateContent:@"百强设计师(2)"];
-//    else if(3 == section)
-//        [temp updateContent:@"精品设计师(2)"];
-//    
-//    return [temp autorelease];
-//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

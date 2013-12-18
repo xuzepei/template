@@ -89,7 +89,7 @@
     self.delegate = delegate;
     self.token = token;
     
-    self.isLiked = YES;
+    self.isLiked = [RCTool isFavorite:item];
     
     [self setNeedsDisplay];
 }
@@ -104,6 +104,16 @@
     if(CGRectContainsPoint(LIKE_BUTTON_RECT, point))
     {
         self.isLiked = self.isLiked?NO:YES;
+        
+        if(self.isLiked)
+        {
+            [RCTool addFavorite:self.item];
+        }
+        else
+        {
+            [RCTool removeFavorite:self.item];
+        }
+        
         [self setNeedsDisplay];
     }
     else

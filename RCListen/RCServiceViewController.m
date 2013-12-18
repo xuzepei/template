@@ -10,6 +10,7 @@
 #import "RCMeViewController.h"
 #import "RCSearchViewController.h"
 #import "RCPhoneView.h"
+#import "RCLoginViewController.h"
 
 @interface RCServiceViewController ()
 
@@ -76,9 +77,18 @@
 {
     NSLog(@"clickedUserButton");
     
-    RCMeViewController* temp = [[RCMeViewController alloc] initWithNibName:nil bundle:nil];
-    [self.navigationController pushViewController:temp animated:YES];
-    [temp release];
+    if([RCTool isLogin])
+    {
+        RCMeViewController* temp = [[RCMeViewController alloc] initWithNibName:nil bundle:nil];
+        [self.navigationController pushViewController:temp animated:YES];
+        [temp release];
+    }
+    else
+    {
+        RCLoginViewController* temp = [[RCLoginViewController alloc] initWithNibName:nil bundle:nil];
+        [self.navigationController pushViewController:temp animated:YES];
+        [temp release];
+    }
 }
 
 - (void)clickedSearchButton:(id)sender
@@ -188,10 +198,24 @@
 
 - (void)clickedPhoneNumber:(id)sender
 {
-    NSString* phoneNum = PHONE_NUMBER;
-    if([phoneNum isKindOfClass:[NSString class]] && [phoneNum length])
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                    message:[NSString stringWithFormat:@"是否立即拨打电话 %@",PHONE_NUMBER] delegate:self cancelButtonTitle:@"否" otherButtonTitles:@"是", nil];
+    alert.tag = 100;
+    alert.delegate = self;
+    [alert show];
+    [alert release];
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex != alertView.cancelButtonIndex && 100 == alertView.tag)
     {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phoneNum]]];
+        NSString* phoneNum = PHONE_NUMBER;
+        if([phoneNum isKindOfClass:[NSString class]] && [phoneNum length])
+        {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phoneNum]]];
+        }
     }
 }
 

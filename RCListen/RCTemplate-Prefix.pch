@@ -85,13 +85,15 @@ typedef enum{
 #define PHONE_VIEW_TEXT @"售前电话: 4008-998-998"
 #define PHONE_NUMBER @"4008998998"
 
+//#define USE_BAIDU_APN @"USE_BAIDU_APN"
+
 #define VERSION @"1.0"
 
 #define JUHE_APP_KEY @"9d4145f9e002947ec70e1871f4e52206"
 #define JUHE_BASE_URL @"http://v.juhe.cn/wz"
 
 //#define BASE_URL @"http://demo.by111.com/fxggapp/Api"
-#define BASE_URL @"http://app1.lsfxgg.com/Api"
+#define BASE_URL @"http://remindall.sinaapp.com"
 #define APIID @"GmtaLHag"
 #define PWD @"kaWxTRZYM5hsIdi4"
 

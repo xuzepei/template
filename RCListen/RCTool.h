@@ -116,6 +116,8 @@
 + (void)setShareText:(NSString*)text;
 + (NSString*)getShareText;
 
+#pragma mark - APN
++ (NSString*)getDeviceId;
 + (void)setDeviceToken:(NSString*)token;
 + (NSString*)getDeviceToken;
 
@@ -128,5 +130,11 @@
 
 + (BOOL)openAll;
 + (void)setOpenAll:(BOOL)b;
+
+#pragma mark - Favorite
++ (void)addFavorite:(NSDictionary*)favorite;
++ (void)removeFavorite:(NSDictionary*)favorite;
++ (BOOL)isFavorite:(NSDictionary*)favorite;
++ (NSArray*)getFavorites;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "RCMeViewController.h"
 #import "RCCenterListHeaderView.h"
+#import "RCFavoriteViewController.h"
 
 #define HEADER_HEIGHT 108.0f
 
@@ -270,6 +271,14 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
 	[tableView deselectRowAtIndexPath: indexPath animated: YES];
+    
+    if(0 == indexPath.section)
+    {
+        RCFavoriteViewController* temp = [[RCFavoriteViewController alloc] initWithNibName:nil bundle:nil];
+        [temp updateContent];
+        [self.navigationController pushViewController:temp animated:YES];
+        [temp release];
+    }
 }
 
 - (void)clickedLogoutButton:(id)sender

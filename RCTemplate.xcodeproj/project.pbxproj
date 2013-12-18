@@ -127,6 +127,7 @@
 		0924564B184DD805001D9AC7 /* favorite_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 09245649184DD805001D9AC7 /* favorite_button@2x.png */; };
 		0924564E184EBA6E001D9AC7 /* RCScrollTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0924564D184EBA6E001D9AC7 /* RCScrollTextView.m */; };
 		09245651184EBD3F001D9AC7 /* RCTextDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09245650184EBD3F001D9AC7 /* RCTextDrawView.m */; };
+		0930D33E18598AA200ABA8F9 /* login_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0930D33D18598AA200ABA8F9 /* login_button@2x.png */; };
 		093D11F216F04E120077CC9A /* RCPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 093D11F116F04E120077CC9A /* RCPickerView.m */; };
 		0941EEBA16EB8DE200327D1A /* RCHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0941EEB916EB8DE200327D1A /* RCHttpRequest.m */; };
 		0941EECA16EB8EFE00327D1A /* RCMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0941EEC916EB8EFE00327D1A /* RCMoreViewController.m */; };
@@ -195,6 +196,8 @@
 		09CF7F2D16A3EAB30050A603 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09CF7F2C16A3EAB30050A603 /* Security.framework */; };
 		09CF7F2F16A3EAB90050A603 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09CF7F2E16A3EAB90050A603 /* QuartzCore.framework */; };
 		09CF7F3716A3ECFF0050A603 /* TBXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CF7F3616A3ECFF0050A603 /* TBXML.m */; };
+		09DA7778186138A300C3F69D /* RCFavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09DA7776186138A300C3F69D /* RCFavoriteViewController.m */; };
+		09DA7779186138A300C3F69D /* RCFavoriteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09DA7777186138A300C3F69D /* RCFavoriteViewController.xib */; };
 		09DB7E7F17539265004BAA2E /* RCShareTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09DB7E7E17539265004BAA2E /* RCShareTextViewController.m */; };
 		09E342861851644900C131D8 /* RCActivityCellContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09E342851851644900C131D8 /* RCActivityCellContentView.m */; };
 		09E3428A1851645E00C131D8 /* RCActivityDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09E342881851645E00C131D8 /* RCActivityDetailViewController.m */; };
@@ -451,6 +454,7 @@
 		0924564D184EBA6E001D9AC7 /* RCScrollTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCScrollTextView.m; sourceTree = "<group>"; };
 		0924564F184EBD3F001D9AC7 /* RCTextDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTextDrawView.h; sourceTree = "<group>"; };
 		09245650184EBD3F001D9AC7 /* RCTextDrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTextDrawView.m; sourceTree = "<group>"; };
+		0930D33D18598AA200ABA8F9 /* login_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_button@2x.png"; sourceTree = "<group>"; };
 		093D11F016F04E120077CC9A /* RCPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCPickerView.h; sourceTree = "<group>"; };
 		093D11F116F04E120077CC9A /* RCPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCPickerView.m; sourceTree = "<group>"; };
 		0941EEB816EB8DE200327D1A /* RCHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCHttpRequest.h; sourceTree = "<group>"; };
@@ -560,6 +564,9 @@
 		09CF7F2E16A3EAB90050A603 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		09CF7F3516A3ECFF0050A603 /* TBXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBXML.h; sourceTree = "<group>"; };
 		09CF7F3616A3ECFF0050A603 /* TBXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBXML.m; sourceTree = "<group>"; };
+		09DA7775186138A300C3F69D /* RCFavoriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCFavoriteViewController.h; sourceTree = "<group>"; };
+		09DA7776186138A300C3F69D /* RCFavoriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCFavoriteViewController.m; sourceTree = "<group>"; };
+		09DA7777186138A300C3F69D /* RCFavoriteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RCFavoriteViewController.xib; sourceTree = "<group>"; };
 		09DB7E7D17539265004BAA2E /* RCShareTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCShareTextViewController.h; sourceTree = "<group>"; };
 		09DB7E7E17539265004BAA2E /* RCShareTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCShareTextViewController.m; sourceTree = "<group>"; };
 		09E342841851644900C131D8 /* RCActivityCellContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCActivityCellContentView.h; sourceTree = "<group>"; };
@@ -1097,11 +1104,9 @@
 			name = Designer;
 			sourceTree = "<group>";
 		};
-		0941EEC016EB8EC000327D1A /* Me */ = {
+		0941EEC016EB8EC000327D1A /* Temp */ = {
 			isa = PBXGroup;
 			children = (
-				0950B92816F160B70039D561 /* RCLoginViewController.h */,
-				0950B92916F160B70039D561 /* RCLoginViewController.m */,
 				0950B92D16F160ED0039D561 /* RCSignupViewController.h */,
 				0950B92E16F160ED0039D561 /* RCSignupViewController.m */,
 				09DB7E7D17539265004BAA2E /* RCShareTextViewController.h */,
@@ -1116,7 +1121,7 @@
 				0979E3E41814F7B300DDB418 /* RCMeInfoViewController.m */,
 				0979E3E51814F7B300DDB418 /* RCMeInfoViewController.xib */,
 			);
-			name = Me;
+			name = Temp;
 			sourceTree = "<group>";
 		};
 		0941EEC116EB8EC600327D1A /* More */ = {
@@ -1169,11 +1174,16 @@
 		0951D21218432B29001BFF4A /* Me */ = {
 			isa = PBXGroup;
 			children = (
+				0950B92816F160B70039D561 /* RCLoginViewController.h */,
+				0950B92916F160B70039D561 /* RCLoginViewController.m */,
 				0951D21318432B46001BFF4A /* RCMeViewController.h */,
 				0951D21418432B46001BFF4A /* RCMeViewController.m */,
 				0951D21518432B46001BFF4A /* RCMeViewController.xib */,
 				090F0EDF185065EB00F981F3 /* RCCenterListHeaderView.h */,
 				090F0EE0185065EB00F981F3 /* RCCenterListHeaderView.m */,
+				09DA7775186138A300C3F69D /* RCFavoriteViewController.h */,
+				09DA7776186138A300C3F69D /* RCFavoriteViewController.m */,
+				09DA7777186138A300C3F69D /* RCFavoriteViewController.xib */,
 			);
 			name = Me;
 			sourceTree = "<group>";
@@ -1191,6 +1201,7 @@
 		095C59C816AF804200F7B949 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				0930D33D18598AA200ABA8F9 /* login_button@2x.png */,
 				09E342A71851A59900C131D8 /* no1@2x.png */,
 				09E342A81851A59900C131D8 /* no2@2x.png */,
 				09E342A91851A59900C131D8 /* no3@2x.png */,
@@ -1379,7 +1390,7 @@
 				09F2F6561842FBBE006D591F /* Home */,
 				09CAD1D5183C56E60031A26A /* Utility */,
 				0941EEC116EB8EC600327D1A /* More */,
-				0941EEC016EB8EC000327D1A /* Me */,
+				0941EEC016EB8EC000327D1A /* Temp */,
 				09CF7F3016A3EC9C0050A603 /* ThirdParty */,
 				09CF7EEE16A3D7740050A603 /* RCAppDelegate.h */,
 				09CF7EEF16A3D7740050A603 /* RCAppDelegate.m */,
@@ -1533,6 +1544,7 @@
 				09E342AE1851A59900C131D8 /* no4@2x.png in Resources */,
 				09F2F65B1842FC69006D591F /* RCHomeViewController.xib in Resources */,
 				09E3429E1851754600C131D8 /* shop_header@2x.png in Resources */,
+				0930D33E18598AA200ABA8F9 /* login_button@2x.png in Resources */,
 				0988951C17F43DF100F5AB13 /* Default.png in Resources */,
 				0951D22918433A17001BFF4A /* banner_2.png in Resources */,
 				090F0EEB1850715300F981F3 /* cancel_button@2x.png in Resources */,
@@ -1562,6 +1574,7 @@
 				0951D21D18432BA0001BFF4A /* RCServiceViewController.xib in Resources */,
 				09245635184DB2CE001D9AC7 /* anli_button@2x.png in Resources */,
 				09F2F64F1842F529006D591F /* tabbar_item_2@2x.png in Resources */,
+				09DA7779186138A300C3F69D /* RCFavoriteViewController.xib in Resources */,
 				090F0EDE1850650C00F981F3 /* center_header@2x.png in Resources */,
 				09E342AD1851A59900C131D8 /* no3@2x.png in Resources */,
 				09245629184DA38B001D9AC7 /* tabbar_item_3_1@2x.png in Resources */,
@@ -1705,6 +1718,7 @@
 				09202381172E2D56009EAB94 /* ASIS3Request.m in Sources */,
 				09202382172E2D56009EAB94 /* ASIS3ServiceRequest.m in Sources */,
 				0951D220184331A5001BFF4A /* RCBannerScrollView.m in Sources */,
+				09DA7778186138A300C3F69D /* RCFavoriteViewController.m in Sources */,
 				09202386172E2DEB009EAB94 /* JSONKit.m in Sources */,
 				09202389172E2E18009EAB94 /* NSString+URLEncoding.m in Sources */,
 				09AD959A173C89700060B3A5 /* RCFeedbackViewController.m in Sources */,
@@ -1779,11 +1793,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sanguo Tech (GC6842RPZX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sanguo Tech (GC6842RPZX)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/xuzepei/template_git/RCListen,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RCListen/RCTemplate-Prefix.pch";
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";
@@ -1799,8 +1816,8 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = RCTemplate;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "178CF7BC-0BC9-425D-AB98-19CBEC58E0D3";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "178CF7BC-0BC9-425D-AB98-19CBEC58E0D3";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -1811,11 +1828,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/xuzepei/template_git/RCListen,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RCListen/RCTemplate-Prefix.pch";
 				HEADER_SEARCH_PATHS = "${SDK_DIR}/usr/include/libxml2";

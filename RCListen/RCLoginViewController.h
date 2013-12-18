@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "NSAttributedString+Attributes.h"
 #import "OHAttributedLabel.h"
+#import "RCPublicViewController.h"
 
-@interface RCLoginViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,OHAttributedLabelDelegate>
+@interface RCLoginViewController : RCPublicViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,OHAttributedLabelDelegate>
 
 @property(nonatomic,retain)UITableView* tableView;
 @property(nonatomic,retain)NSMutableArray* itemArray;

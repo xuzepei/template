@@ -21,7 +21,7 @@
 //        if([RCTool systemVersion] >= 7.0)
 //            offset_y = STATUS_BAR_HEIGHT;
         
-        self.titleLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, [RCTool getScreenSize].width-20, 44)] autorelease];
+        self.titleLabel = [[[UILabel alloc] initWithFrame:CGRectMake(-2, 0, [RCTool getScreenSize].width-20, 44)] autorelease];
         self.titleLabel.backgroundColor = [UIColor clearColor];
         self.titleLabel.shadowOffset = CGSizeMake(1,1);
         self.titleLabel.shadowColor = [UIColor blackColor];

@@ -10,7 +10,7 @@
 #import "RCPublicViewController.h"
 #import "RCBannerScrollView.h"
 
-@interface RCHomeViewController : RCPublicViewController<UIScrollViewDelegate>
+@interface RCHomeViewController : RCPublicViewController<UIScrollViewDelegate,UIAlertViewDelegate>
 
 @property(nonatomic,retain)UIScrollView* scrollView;
 @property(nonatomic,retain)RCBannerScrollView* bannerScrollView;

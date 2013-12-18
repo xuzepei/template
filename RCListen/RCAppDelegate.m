@@ -52,12 +52,15 @@
     
     //显示Status Bar for iOS6
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
-    
-//for baidu push
-//    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
-    
+    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+
+#ifdef USE_BAIDU_APN
+    //for baidu push
     [BPush setupChannel:launchOptions];
     [BPush setDelegate:self];
+#else
+    
+#endif
     
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     
@@ -128,8 +131,6 @@
 {
     UIApplication* app = [UIApplication sharedApplication];
 	app.applicationIconBadgeNumber = 0;
-	[app registerForRemoteNotificationTypes:
-	 (UIRemoteNotificationType)(UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeSound)];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -249,7 +250,7 @@
 	token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
     [RCTool setDeviceToken:token];
     
-    NSString* urlString = [NSString stringWithFormat:@"%@/ad.php?apiid=%@&pwd=%@&type=index&iostoken=%@",BASE_URL,APIID,PWD,token];
+    NSString* urlString = [NSString stringWithFormat:@"%@/api/add_remind.php?device_id=%@&device_token=%@",BASE_URL,[RCTool getDeviceId],[RCTool getDeviceToken]];
     
     RCHttpRequest* temp2 = [[[RCHttpRequest alloc] init] autorelease];
     [temp2 request:urlString delegate:self resultSelector:nil token:nil];
@@ -257,11 +258,13 @@
 
 - (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)devToken
 {
+#ifdef USE_BAIDU_APN
     //for baidu push
     [BPush registerDeviceToken:devToken];
     [BPush bindChannel];
-    
-    //[self sendProviderDeviceToken: devToken];
+#else
+    [self sendProviderDeviceToken: devToken];
+#endif
 }
 
 - (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)err

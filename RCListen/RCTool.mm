@@ -32,6 +32,8 @@ void systemSoundCompletionProc(SystemSoundID ssID,void *clientData)
 
 + (NSString*)getUserDocumentDirectoryPath
 {
+//    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    
     return NSTemporaryDirectory();
 }
 
@@ -1183,20 +1185,28 @@ void systemSoundCompletionProc(SystemSoundID ssID,void *clientData)
     return SHARE_TEXT;
 }
 
++ (NSString*)getDeviceId
+{
+    CFUUIDRef uuid = CFUUIDCreate(NULL);
+    CFStringRef temp = CFUUIDCreateString(NULL, uuid);
+    CFRelease(uuid);
+    return (NSString*)temp;
+}
+
 + (void)setDeviceToken:(NSString*)token
 {
     if(0 == [token length])
         return;
     
     NSUserDefaults* temp = [NSUserDefaults standardUserDefaults];
-    [temp setObject:token forKey:@"token"];
+    [temp setObject:token forKey:@"device_token"];
     [temp synchronize];
 }
 
 + (NSString*)getDeviceToken
 {
     NSUserDefaults* temp = [NSUserDefaults standardUserDefaults];
-    NSString* token = [temp objectForKey:@"token"];
+    NSString* token = [temp objectForKey:@"device_token"];
     if([token length])
         return token;
     
@@ -1255,6 +1265,100 @@ void systemSoundCompletionProc(SystemSoundID ssID,void *clientData)
     NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
     [ud setBool:b forKey:@"openall"];
     [ud synchronize];
+}
+
+#pragma mark - Favorite
+
++ (void)addFavorite:(NSDictionary*)favorite
+{
+    if(nil == favorite)
+        return;
+    
+    NSMutableArray* array = [[NSMutableArray alloc] init];
+    NSArray* temp = [RCTool getFavorites];
+    if(temp && [temp count])
+    {
+        [array addObjectsFromArray:temp];
+    }
+    
+    NSString* new_id = [favorite objectForKey:@"id"];
+    NSString* new_f_type = [favorite objectForKey:@"f_type"];
+    for(NSDictionary* item in array)
+    {
+        NSString* id = [item objectForKey:@"id"];
+        NSString* f_type = [item objectForKey:@"f_type"];
+        if([id isEqualToString:new_id] && [f_type isEqualToString:new_f_type])
+        {
+            return;
+        }
+    }
+    
+    [array addObject: favorite];
+    
+    NSString* path = [NSString stringWithFormat:@"%@/favorites.bin",[RCTool getUserDocumentDirectoryPath]];
+    [array writeToFile:path atomically:NO];
+    [array release];
+    
+    NSArray* temparr = [RCTool getFavorites];
+    NSLog(@"%@",temparr);
+}
+
++ (void)removeFavorite:(NSDictionary*)favorite
+{
+    if(nil == favorite)
+        return;
+    
+    NSMutableArray* array = [[NSMutableArray alloc] init];
+    NSArray* temp = [RCTool getFavorites];
+    if(temp && [temp count])
+    {
+        [array addObjectsFromArray:temp];
+    }
+    
+    NSString* new_id = [favorite objectForKey:@"id"];
+    NSString* new_f_type = [favorite objectForKey:@"f_type"];
+    for(NSDictionary* item in array)
+    {
+        NSString* id = [item objectForKey:@"id"];
+        NSString* f_type = [item objectForKey:@"f_type"];
+        if([id isEqualToString:new_id] && [f_type isEqualToString:new_f_type])
+        {
+            [array removeObject:item];
+            break;
+        }
+    }
+    
+    NSString* path = [NSString stringWithFormat:@"%@/favorites.bin",[RCTool getUserDocumentDirectoryPath]];
+    [array writeToFile:path atomically:NO];
+    [array release];
+}
+
++ (BOOL)isFavorite:(NSDictionary*)favorite
+{
+    if(nil == favorite)
+        return NO;
+    
+    NSMutableArray* array = [RCTool getFavorites];
+
+    NSString* new_id = [favorite objectForKey:@"id"];
+    NSString* new_f_type = [favorite objectForKey:@"f_type"];
+    for(NSDictionary* item in array)
+    {
+        NSString* id = [item objectForKey:@"id"];
+        NSString* f_type = [item objectForKey:@"f_type"];
+        if([id isEqualToString:new_id] && [f_type isEqualToString:new_f_type])
+        {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
++ (NSArray*)getFavorites
+{
+    NSString* path = [NSString stringWithFormat:@"%@/favorites.bin",[RCTool getUserDocumentDirectoryPath]];
+    return [NSArray arrayWithContentsOfFile:path];
 }
 
 

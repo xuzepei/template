@@ -10,6 +10,8 @@
 #import "RCDesignerView.h"
 #import "RCTabBar3.h"
 #import "RCPhoneView.h"
+#import "RCAnLiDetailViewController.h"
+#import "RCPublicCell.h"
 
 #define IMAGE_HEIGHT 168.0f
 
@@ -24,22 +26,35 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        
-        
-        
     }
     return self;
 }
 
 - (void)dealloc
 {
+    self.tableView = nil;
+    self.itemArray = nil;
+    
     self.favoriteButton = nil;
     self.headerImage = nil;
     self.tabBar = nil;
     self.item = nil;
     self.scrollTextView = nil;
+    self.phoneView = nil;
     
     [super dealloc];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear: animated];
+    self.navigationController.navigationBar.hidden = NO;
 }
 
 - (void)viewDidLoad
@@ -74,9 +89,12 @@
     
     [self initTabBar];
     
+    [self initTableView];
     [self initScrollTextView];
     
     [self initPhoneView];
+    
+    [self updateContent:self.item];
 }
 
 - (void)didReceiveMemoryWarning
@@ -100,6 +118,35 @@
 - (void)updateContent:(NSDictionary*)item
 {
     self.item = item;
+    
+    if(nil == _itemArray)
+        _itemArray = [[NSMutableArray alloc] init];
+    
+    [_itemArray removeAllObjects];
+    NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
+    [dict setObject:@"现代简欧风 真皮淡雅舒适感觉" forKey:@"desc"];
+    [_itemArray addObject:dict];
+    [dict release];
+    
+    dict = [[NSMutableDictionary alloc] init];
+    [dict setObject:@"现代简欧风 真皮淡雅舒适感觉" forKey:@"desc"];
+    [_itemArray addObject:dict];
+    [dict release];
+    
+    
+    dict = [[NSMutableDictionary alloc] init];
+    [dict setObject:@"现代简欧风 真皮淡雅舒适感觉" forKey:@"desc"];
+    [_itemArray addObject:dict];
+    [dict release];
+    
+    
+    dict = [[NSMutableDictionary alloc] init];
+    [dict setObject:@"现代简欧风 真皮淡雅舒适感觉" forKey:@"desc"];
+    [_itemArray addObject:dict];
+    [dict release];
+    
+    if(_tableView)
+        [_tableView reloadData];
 }
 
 - (void)initTabBar
@@ -118,6 +165,20 @@
 - (void)clickedTabBarItem:(int)index token:(id)token
 {
     NSLog(@"clickedTabBarItem:%d",index);
+    
+    if(0 == index)
+    {
+        [_scrollTextView removeFromSuperview];
+        [self.view addSubview:_tableView];
+    }
+    else if(1 == index)
+    {
+        [_tableView removeFromSuperview];
+        [self.view addSubview:_scrollTextView];
+    }
+    
+    if(self.phoneView)
+        [self.view addSubview:_phoneView];
 }
 
 - (void)initScrollTextView
@@ -127,32 +188,155 @@
         _scrollTextView = [[RCScrollTextView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT+IMAGE_HEIGHT + 45,[RCTool getScreenSize].width, [RCTool getScreenSize].height - (STATUS_BAR_HEIGHT+IMAGE_HEIGHT + 45))];
     }
     
-    NSString* text = @"fjsofjisodfjodsijfosdjfosfjsofjisodfjodsijfosdjfosfjsofjisodfjodsijfosdjfosfjsofjisodfjodsijfosdjfosfjsofjisodfjodsijfosdjfosfjsofjisodfjodsijfosdjfosfjsofjisodfjodsijfosdjfosfjsofjisodfjodsijfosdjfosfjsofjisodfjodsijfosdjfosfjsofjisodfjodsijfosdjfosfjsofjisodfjodsijfosdjfosfjsofjisodfjodsijfosdjfosfjsofjisodfjodsijfosdjfosfjsofjisodfjodsijfosdjfosfjsofjisodfjodsijfosdjfosfjsofjisodfjodsijfosdjfosfjsofjisodfjodsijfosdjfos";
+    NSString* text = @"设计师履历";
     NSMutableDictionary* item = [[NSMutableDictionary alloc] init];
     [item setObject:text forKey:@"text"];
     
     [_scrollTextView updateContent:item];
     [item release];
     
-    [self.view addSubview:_scrollTextView];
+    //[self.view addSubview:_scrollTextView];
 }
 
 - (void)initPhoneView
 {
-    RCPhoneView* phoneView = [[[RCPhoneView alloc] initWithFrame:CGRectMake(0, [RCTool getScreenSize].height - PHONE_VIEW_HEIGHT, [RCTool getScreenSize].width, PHONE_VIEW_HEIGHT)] autorelease];
+    if(nil == _phoneView)
+    self.phoneView = [[[RCPhoneView alloc] initWithFrame:CGRectMake(0, [RCTool getScreenSize].height - PHONE_VIEW_HEIGHT, [RCTool getScreenSize].width, PHONE_VIEW_HEIGHT)] autorelease];
     
-    phoneView.delegate = self;
-    [phoneView updateContent:PHONE_VIEW_TEXT];
-    [self.view addSubview:phoneView];
+    _phoneView.delegate = self;
+    [_phoneView updateContent:PHONE_VIEW_TEXT];
+    [self.view addSubview:_phoneView];
 }
 
 - (void)clickedPhoneNumber:(id)sender
 {
-    NSString* phoneNum = PHONE_NUMBER;
-    if([phoneNum isKindOfClass:[NSString class]] && [phoneNum length])
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                    message:[NSString stringWithFormat:@"是否立即拨打电话 %@",PHONE_NUMBER] delegate:self cancelButtonTitle:@"否" otherButtonTitles:@"是", nil];
+    alert.tag = 100;
+    alert.delegate = self;
+    [alert show];
+    [alert release];
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex != alertView.cancelButtonIndex && 100 == alertView.tag)
     {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phoneNum]]];
+        NSString* phoneNum = PHONE_NUMBER;
+        if([phoneNum isKindOfClass:[NSString class]] && [phoneNum length])
+        {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",phoneNum]]];
+        }
     }
+}
+
+#pragma mark - Table View
+
+- (void)initTableView
+{
+    if(nil == _tableView)
+    {
+        //init table view
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,STATUS_BAR_HEIGHT+IMAGE_HEIGHT + 45,[RCTool getScreenSize].width,[RCTool getScreenSize].height - (STATUS_BAR_HEIGHT+IMAGE_HEIGHT + 45))
+                                                  style:UITableViewStyleGrouped];
+        _tableView.backgroundColor = [UIColor clearColor];
+        _tableView.delegate = self;
+        _tableView.opaque = NO;
+        _tableView.backgroundView = nil;
+        _tableView.dataSource = self;
+        _tableView.separatorColor = [UIColor clearColor];
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    }
+	
+	[self.view addSubview:_tableView];
+}
+
+- (void)tableView:(UITableView *)tableView
+  willDisplayCell:(UITableViewCell *)cell
+forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [cell setBackgroundColor:[UIColor clearColor]];
+}
+
+- (CGFloat)getCellHeight:(NSIndexPath*)indexPath
+{
+    return 226.0f;
+}
+
+- (id)getCellDataAtIndexPath: (NSIndexPath*)indexPath
+{
+	if(indexPath.row >= [_itemArray count])
+		return nil;
+	
+	return [_itemArray objectAtIndex: indexPath.row];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [self getCellHeight:indexPath];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return [_itemArray count];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 1.0;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if(0 == section)
+        return 12;
+    
+    return 0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellId = @"cellId";
+    
+    UITableViewCell *cell = nil;
+    cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    if(cell == nil)
+    {
+        cell = [[[RCPublicCell alloc] initWithStyle: UITableViewCellStyleDefault
+                                    reuseIdentifier: cellId contentViewClass:NSClassFromString(@"RCAnLiCellContentView")] autorelease];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    NSDictionary* item = (NSDictionary*)[self getCellDataAtIndexPath: indexPath];
+    RCPublicCell* temp = (RCPublicCell*)cell;
+    if(temp)
+    {
+        [temp updateContent:item cellHeight:[self getCellHeight:indexPath] delegate:self token:nil];
+    }
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	
+	[tableView deselectRowAtIndexPath: indexPath animated: YES];
+}
+
+- (void)clickedCell:(id)token
+{
+    NSDictionary* item = (NSDictionary*)token;
+    
+    RCAnLiDetailViewController* temp = [[RCAnLiDetailViewController alloc] initWithNibName:nil bundle:nil];
+    [self.navigationController pushViewController:temp animated:YES];
+    [temp release];
+    
 }
 
 @end

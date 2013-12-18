@@ -10,7 +10,7 @@
 #import "RCPublicViewController.h"
 #import "RCAnLiDetailView.h"
 
-@interface RCAnLiDetailViewController : RCPublicViewController
+@interface RCAnLiDetailViewController : RCPublicViewController<UIAlertViewDelegate>
 
 @property(nonatomic,retain)UIScrollView* scrollView;
 @property(nonatomic,retain)RCAnLiDetailView* detailView;

@@ -10,7 +10,7 @@
 #import "RCPublicViewController.h"
 #import "RCActivityDetailView.h"
 
-@interface RCActivityDetailViewController : RCPublicViewController
+@interface RCActivityDetailViewController : RCPublicViewController<UIAlertViewDelegate>
 
 @property(nonatomic,retain)UIScrollView* scrollView;
 @property(nonatomic,retain)RCActivityDetailView* detailView;

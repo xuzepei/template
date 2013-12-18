@@ -11,6 +11,7 @@
 #import "RCSearchViewController.h"
 #import "RCPublicCell.h"
 #import "RCGoodsViewController.h"
+#import "RCLoginViewController.h"
 
 @interface RCShopViewController ()
 
@@ -78,9 +79,18 @@
 {
     NSLog(@"clickedUserButton");
     
-    RCMeViewController* temp = [[RCMeViewController alloc] initWithNibName:nil bundle:nil];
-    [self.navigationController pushViewController:temp animated:YES];
-    [temp release];
+    if([RCTool isLogin])
+    {
+        RCMeViewController* temp = [[RCMeViewController alloc] initWithNibName:nil bundle:nil];
+        [self.navigationController pushViewController:temp animated:YES];
+        [temp release];
+    }
+    else
+    {
+        RCLoginViewController* temp = [[RCLoginViewController alloc] initWithNibName:nil bundle:nil];
+        [self.navigationController pushViewController:temp animated:YES];
+        [temp release];
+    }
 }
 
 - (void)clickedSearchButton:(id)sender

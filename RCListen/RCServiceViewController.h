@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RCPublicViewController.h"
 
-@interface RCServiceViewController : RCPublicViewController<UIScrollViewDelegate>
+@interface RCServiceViewController : RCPublicViewController<UIScrollViewDelegate,UIAlertViewDelegate>
 
 @property(nonatomic,retain)UIButton* userButton;
 @property(nonatomic,retain)UIButton* searchButton;
